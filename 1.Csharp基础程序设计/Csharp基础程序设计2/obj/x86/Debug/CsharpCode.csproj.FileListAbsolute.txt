@@ -1,0 +1,5 @@
+c:\users\administrator\documents\visual studio 2010\Projects\Csharp基础程序设计2\Csharp基础程序设计2\bin\Debug\Csharp基础程序设计2.exe
+c:\users\administrator\documents\visual studio 2010\Projects\Csharp基础程序设计2\Csharp基础程序设计2\bin\Debug\Csharp基础程序设计2.pdb
+c:\users\administrator\documents\visual studio 2010\Projects\Csharp基础程序设计2\Csharp基础程序设计2\obj\x86\Debug\ResolveAssemblyReference.cache
+c:\users\administrator\documents\visual studio 2010\Projects\Csharp基础程序设计2\Csharp基础程序设计2\obj\x86\Debug\Csharp基础程序设计2.exe
+c:\users\administrator\documents\visual studio 2010\Projects\Csharp基础程序设计2\Csharp基础程序设计2\obj\x86\Debug\Csharp基础程序设计2.pdb

@@ -1,0 +1,11 @@
+E:\大三上\C#实验\图书管理系统\图书管理系统\obj\x86\Debug\图书管理系统.Form1.resources
+E:\大三上\C#实验\图书管理系统\图书管理系统\obj\x86\Debug\图书管理系统.Properties.Resources.resources
+E:\大三上\C#实验\图书管理系统\图书管理系统\obj\x86\Debug\图书管理系统.csproj.GenerateResource.Cache
+E:\大三上\C#实验\图书管理系统\图书管理系统\bin\Debug\图书管理系统.exe
+E:\大三上\C#实验\图书管理系统\图书管理系统\bin\Debug\图书管理系统.pdb
+E:\大三上\C#实验\图书管理系统\图书管理系统\obj\x86\Debug\图书管理系统.csprojResolveAssemblyReference.cache
+E:\大三上\C#实验\图书管理系统\图书管理系统\obj\x86\Debug\图书管理系统.exe
+E:\大三上\C#实验\图书管理系统\图书管理系统\obj\x86\Debug\图书管理系统.pdb
+E:\大三上\C#实验\图书管理系统\图书管理系统\obj\x86\Debug\图书管理系统.User_Form.resources
+E:\大三上\C#实验\图书管理系统\图书管理系统\obj\x86\Debug\图书管理系统.Admin_Form.resources
+E:\大三上\C#实验\图书管理系统\图书管理系统\obj\x86\Debug\图书管理系统.Book_Category.resources
