@@ -12,3 +12,4 @@ E:\大三上\C#实验\Home_Four\Home_Four\bin\Debug\Home_Four.pdb
 E:\大三上\C#实验\Home_Four\Home_Four\obj\x86\Debug\Home_Four.Caculate.resources
 E:\大三上\C#实验\Home_Four\Home_Four\obj\x86\Debug\Home_Four.Properties.Resources.resources
 E:\大三上\C#实验\Home_Four\Home_Four\obj\x86\Debug\Home_Four.csproj.GenerateResource.Cache
+E:\大三上\C#实验\Home_Four\Home_Four\obj\x86\Debug\Home_Four.csprojResolveAssemblyReference.cache

@@ -165,7 +165,6 @@
             this.radioButton4.Name = "radioButton4";
             this.radioButton4.Size = new System.Drawing.Size(59, 16);
             this.radioButton4.TabIndex = 3;
-            this.radioButton4.TabStop = true;
             this.radioButton4.Text = "二进制";
             this.radioButton4.UseVisualStyleBackColor = true;
             this.radioButton4.CheckedChanged += new System.EventHandler(this.radioButton4_CheckedChanged);
@@ -177,7 +176,6 @@
             this.radioButton3.Name = "radioButton3";
             this.radioButton3.Size = new System.Drawing.Size(59, 16);
             this.radioButton3.TabIndex = 2;
-            this.radioButton3.TabStop = true;
             this.radioButton3.Text = "八进制";
             this.radioButton3.UseVisualStyleBackColor = true;
             this.radioButton3.CheckedChanged += new System.EventHandler(this.radioButton3_CheckedChanged);
@@ -185,6 +183,7 @@
             // radioButton2
             // 
             this.radioButton2.AutoSize = true;
+            this.radioButton2.Checked = true;
             this.radioButton2.Location = new System.Drawing.Point(93, 3);
             this.radioButton2.Name = "radioButton2";
             this.radioButton2.Size = new System.Drawing.Size(59, 16);
@@ -192,6 +191,7 @@
             this.radioButton2.TabStop = true;
             this.radioButton2.Text = "十进制";
             this.radioButton2.UseVisualStyleBackColor = true;
+            this.radioButton2.CheckedChanged += new System.EventHandler(this.radioButton2_CheckedChanged);
             // 
             // radioButton1
             // 
@@ -200,7 +200,6 @@
             this.radioButton1.Name = "radioButton1";
             this.radioButton1.Size = new System.Drawing.Size(71, 16);
             this.radioButton1.TabIndex = 0;
-            this.radioButton1.TabStop = true;
             this.radioButton1.Text = "十六进制";
             this.radioButton1.UseVisualStyleBackColor = true;
             this.radioButton1.CheckedChanged += new System.EventHandler(this.radioButton1_CheckedChanged);
@@ -290,6 +289,7 @@
             this.btn_ctan.TabIndex = 6;
             this.btn_ctan.Text = "ctan";
             this.btn_ctan.UseVisualStyleBackColor = true;
+            this.btn_ctan.Click += new System.EventHandler(this.btn_ctan_Click);
             // 
             // btn_x3
             // 
@@ -308,6 +308,7 @@
             this.btn_tan.TabIndex = 6;
             this.btn_tan.Text = "tan";
             this.btn_tan.UseVisualStyleBackColor = true;
+            this.btn_tan.Click += new System.EventHandler(this.btn_tan_Click);
             // 
             // btn_log
             // 
@@ -335,6 +336,7 @@
             this.btn_cos.TabIndex = 3;
             this.btn_cos.Text = "cos";
             this.btn_cos.UseVisualStyleBackColor = true;
+            this.btn_cos.Click += new System.EventHandler(this.btn_cos_Click);
             // 
             // btn_ln
             // 
@@ -362,6 +364,7 @@
             this.btn_sin.TabIndex = 0;
             this.btn_sin.Text = "sin";
             this.btn_sin.UseVisualStyleBackColor = true;
+            this.btn_sin.Click += new System.EventHandler(this.btn_sin_Click);
             // 
             // btn_3
             // 
@@ -674,6 +677,7 @@
             this.btn_e.TabIndex = 9;
             this.btn_e.Text = "e";
             this.btn_e.UseVisualStyleBackColor = true;
+            this.btn_e.Click += new System.EventHandler(this.btn_e_Click);
             // 
             // btn_pi
             // 
@@ -683,6 +687,7 @@
             this.btn_pi.TabIndex = 10;
             this.btn_pi.Text = "pi";
             this.btn_pi.UseVisualStyleBackColor = true;
+            this.btn_pi.Click += new System.EventHandler(this.btn_pi_Click);
             // 
             // Caculate
             // 

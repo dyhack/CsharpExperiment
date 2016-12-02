@@ -13,5 +13,10 @@ namespace Home_Four
           String MUL(double x,double y);
           String ABS(double x);
           String MOD(double x,double y);
+          String SIN(double x);
+          String COS(double x);
+          String TAN(double x);
+          String CTAN(double x);
+
     }
 }

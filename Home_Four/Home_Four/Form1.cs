@@ -17,8 +17,10 @@ namespace Home_Four
         Stack st = new Stack();
         bool previsnumber = false;
         bool nextisnumber = false;
-        enum Symbol{ADD,SUB,MUL,DIV,MOD,sin,cos,tan,ctan};
-        Symbol symbol;
+        enum Hex { Hexadecimal, Decimal, Octal, Binary };//16,10,8,2进制
+        enum Symbol{ADD,SUB,MUL,DIV,MOD,sin,cos,tan,ctan};//加，减，乘，除
+        Symbol symbol;//运算符标识符
+        Hex hex=Hex.Decimal;//进制标识符
         public Caculate()
         {
             InitializeComponent();
@@ -105,7 +107,23 @@ namespace Home_Four
         /// <returns></returns>
         public String ADD(double x,double y)
         {
-            return (x + y).ToString();
+            int result=Convert.ToInt32((x + y));
+            try
+            {
+                switch (hex)
+                {
+                    case Hex.Hexadecimal: return Convert.ToString(result, 16); 
+                    case Hex.Decimal: return (x + y).ToString();
+                    case Hex.Octal: return Convert.ToString(result, 8);
+                    case Hex.Binary: return Convert.ToString(result, 2);
+                    default: return "出错";
+                }
+            }
+            catch (Exception e)
+            {
+                return "出错";
+            }
+           
  
         }
         /// <summary>
@@ -116,7 +134,22 @@ namespace Home_Four
         /// <returns></returns>
         public String SUB(double x,double y)
         {
-            return (x-y).ToString();
+            int result=Convert.ToInt32((x - y));
+            try
+            {
+                switch (hex)
+                {
+                    case Hex.Hexadecimal: return Convert.ToString(result, 16);
+                    case Hex.Decimal: return (x - y).ToString();
+                    case Hex.Octal: return Convert.ToString(result, 8);
+                    case Hex.Binary: return Convert.ToString(result, 2);
+                    default: return "出错";
+                }
+            }
+            catch (Exception e)
+            {
+                return "出错";
+            }
         }
         /// <summary>
         /// 乘法
@@ -126,7 +159,22 @@ namespace Home_Four
         /// <returns></returns>
         public String MUL(double x, double y)
         {
-            return (x * y).ToString();
+            int result = Convert.ToInt32((x * y));
+            try
+            {
+                switch (hex)
+                {
+                    case Hex.Hexadecimal: return Convert.ToString(result, 16);
+                    case Hex.Decimal: return (x * y).ToString();
+                    case Hex.Octal: return Convert.ToString(result, 8);
+                    case Hex.Binary: return Convert.ToString(result, 2);
+                    default: return "出错";
+                }
+            }
+            catch (Exception e)
+            {
+                return "出错";
+            }
 
         }
         /// <summary>
@@ -137,7 +185,22 @@ namespace Home_Four
         /// <returns></returns>
         public String DIV(double x, double y)
         {
-            return (x/y).ToString();
+            int result = Convert.ToInt32((x / y));
+            try
+            {
+                switch (hex)
+                {
+                    case Hex.Hexadecimal: return Convert.ToString(result, 16);
+                    case Hex.Decimal: return (x / y).ToString();
+                    case Hex.Octal: return Convert.ToString(result, 8);
+                    case Hex.Binary: return Convert.ToString(result, 2);
+                    default: return "出错";
+                }
+            }
+            catch (Exception e)
+            {
+                return "出错";
+            }
         }
         /// <summary>
         /// 取绝对值
@@ -158,15 +221,55 @@ namespace Home_Four
         {
             return (x % y).ToString();
         }
+        /// <summary>
+        /// 三角SIN函数
+        /// </summary>
+        /// <param name="x">度数</param>
+        /// <returns></returns>
+        public String SIN(double x)
+        {
+            return Math.Sin((x*Math.PI)/180).ToString();
+        }
+        /// <summary>
+        /// 三角COS函数
+        /// </summary>
+        /// <param name="x">度数</param>
+        /// <returns></returns>
+        public String COS(double x)
+        {
+            return Math.Cos((x * Math.PI) / 180).ToString();
+        }
+        /// <summary>
+        /// 三角TAN函数
+        /// </summary>
+        /// <param name="x">度数</param>
+        /// <returns></returns>
+        public String TAN(double x)
+        {
+            return Math.Tan((x * Math.PI) / 180).ToString();
+        }
+        /// <summary>
+        /// COTTAN(1/TAN(x))
+        /// </summary>
+        /// <param name="x">度数</param>
+        /// <returns></returns>
+        public String CTAN(double x)
+        {
+            return (1 / Math.Tan((x * Math.PI) / 180)).ToString();
+        }
         private void radioButton1_CheckedChanged(object sender, EventArgs e)
         {
             Show_btn();
+            //16进制
+            hex = Hex.Hexadecimal;
         }
 
 
         private void radioButton2_CheckedChanged(object sender, EventArgs e)
         {
             Show_btn();
+            //10进制
+            hex = Hex.Decimal;
         }
 
  
@@ -174,11 +277,15 @@ namespace Home_Four
         private void radioButton4_CheckedChanged(object sender, EventArgs e)
         {
             Show_btn();
+            //二进制
+            hex = Hex.Binary;
         }
 
         private void radioButton3_CheckedChanged(object sender, EventArgs e)
         {
             Show_btn();
+            //8进制
+            hex = Hex.Octal;
         }
 
         //绝对值转化
@@ -265,64 +372,137 @@ namespace Home_Four
 
         private void btn_add_Click(object sender, EventArgs e)
         {
-            double x;
-            if (double.TryParse(text_show_caclute.Text, out x) == true)
+            if (hex ==Hex.Decimal)
             {
+                double x;
+                if (double.TryParse(text_show_caclute.Text, out x) == true)
+                {
+                    previsnumber = true;
+                    st.Push(x);
+                    text_show_caclute.Text = "";
+                }
+                symbol = Symbol.ADD;
+            }
+            else
+            {
+                String x;
+                x=text_show_caclute.Text;
                 previsnumber = true;
                 st.Push(x);
                 text_show_caclute.Text = "";
+                symbol = Symbol.ADD;
+                
+ 
             }
-            symbol = Symbol.ADD;
+            
         }
         private void btn_sub_Click(object sender, EventArgs e)
         {
-            double x;
-            if (double.TryParse(text_show_caclute.Text, out x) == true)
+            if (hex == Hex.Decimal)
             {
+                double x;
+                if (double.TryParse(text_show_caclute.Text, out x) == true)
+                {
+                    previsnumber = true;
+                    st.Push(x);
+                    text_show_caclute.Text = "";
+
+                }
+                symbol = Symbol.SUB;
+
+            }
+            else
+            {
+                String x;
+                x = text_show_caclute.Text;
                 previsnumber = true;
                 st.Push(x);
                 text_show_caclute.Text = "";
+                symbol = Symbol.SUB;
+
 
             }
-            symbol = Symbol.SUB;
-
         }
         private void btn_mul_Click(object sender, EventArgs e)
         {
-            double x;
-            if (double.TryParse(text_show_caclute.Text, out x) == true)
+            if (hex == Hex.Decimal)
             {
+                double x;
+                if (double.TryParse(text_show_caclute.Text, out x) == true)
+                {
+                    previsnumber = true;
+                    st.Push(x);
+                    text_show_caclute.Text = "";
+
+                }
+                symbol = Symbol.MUL;
+            }
+            else
+            {
+                String x;
+                x = text_show_caclute.Text;
                 previsnumber = true;
                 st.Push(x);
                 text_show_caclute.Text = "";
+                symbol = Symbol.MUL;
+
 
             }
-            symbol = Symbol.MUL;
         }
         private void btn_div_Click(object sender, EventArgs e)
         {
-            double x;
-            if (double.TryParse(text_show_caclute.Text, out x) == true)
+            if (hex == Hex.Decimal)
             {
+                double x;
+                if (double.TryParse(text_show_caclute.Text, out x) == true)
+                {
+                    previsnumber = true;
+                    st.Push(x);
+                    text_show_caclute.Text = "";
+
+                }
+                symbol = Symbol.DIV;
+
+            }
+            else
+            {
+                String x;
+                x = text_show_caclute.Text;
                 previsnumber = true;
                 st.Push(x);
                 text_show_caclute.Text = "";
+                symbol = Symbol.DIV;
+
 
             }
-            symbol = Symbol.DIV;
-
         }
         private void btn_mod_Click(object sender, EventArgs e)
         {
-            double x;
-            if (double.TryParse(text_show_caclute.Text, out x) == true)
+
+            if (hex == Hex.Decimal)
             {
+                double x;
+                if (double.TryParse(text_show_caclute.Text, out x) == true)
+                {
+                    
+                    previsnumber = true;
+                    st.Push(x);
+                    text_show_caclute.Text = "";
+                    symbol = Symbol.MOD;
+                }
+            }
+            else
+            {
+                String x;
+                x = text_show_caclute.Text;
                 previsnumber = true;
                 st.Push(x);
                 text_show_caclute.Text = "";
+                symbol = Symbol.MOD;
+
 
             }
-            symbol = Symbol.MOD;
+            
 
         }
 
@@ -352,19 +532,62 @@ namespace Home_Four
         {
             try
             {
-                if (previsnumber && isnumber(Convert.ToDouble(text_show_caclute.Text)))
+                if (hex == Hex.Decimal)//判断是否为10进制
                 {
+                    if (previsnumber && isnumber(Convert.ToDouble(text_show_caclute.Text)))
+                    {
 
+                        switch (symbol)
+                        {
+                            case Symbol.ADD: text_show_caclute.Text = ADD((double)st.Peek(), Convert.ToDouble(text_show_caclute.Text)); break;
+                            case Symbol.SUB: text_show_caclute.Text = SUB((double)st.Peek(), Convert.ToDouble(text_show_caclute.Text)); break;
+                            case Symbol.MUL: text_show_caclute.Text = MUL((double)st.Peek(), Convert.ToDouble(text_show_caclute.Text)); break;
+                            case Symbol.DIV: text_show_caclute.Text = DIV((double)st.Peek(), Convert.ToDouble(text_show_caclute.Text)); break;
+                            case Symbol.MOD: text_show_caclute.Text = MOD((double)st.Peek(), Convert.ToDouble(text_show_caclute.Text)); break;
+                        }
+
+                    }
+                }
+                else if (hex == Hex.Hexadecimal)//16进制
+                {
                     switch (symbol)
                     {
-                        case Symbol.ADD: text_show_caclute.Text = ADD((double)st.Peek(), Convert.ToDouble(text_show_caclute.Text)); break;
-                        case Symbol.SUB: text_show_caclute.Text = SUB((double)st.Peek(), Convert.ToDouble(text_show_caclute.Text)); break;
-                        case Symbol.MUL: text_show_caclute.Text = MUL((double)st.Peek(), Convert.ToDouble(text_show_caclute.Text)); break;
-                        case Symbol.DIV: text_show_caclute.Text = DIV((double)st.Peek(), Convert.ToDouble(text_show_caclute.Text)); break;
-                        case Symbol.MOD: text_show_caclute.Text = MOD((double)st.Peek(), Convert.ToDouble(text_show_caclute.Text)); break;
+                            //输入参数16进制
+                        case Symbol.ADD: text_show_caclute.Text = ADD(Convert.ToInt32(st.Peek().ToString(),16),Convert.ToInt32(text_show_caclute.Text,16)); break;
+                        case Symbol.SUB: text_show_caclute.Text = SUB(Convert.ToInt32(st.Peek().ToString(), 16), Convert.ToInt32(text_show_caclute.Text, 16)); break;
+                        case Symbol.MUL: text_show_caclute.Text = MUL(Convert.ToInt32(st.Peek().ToString(), 16), Convert.ToInt32(text_show_caclute.Text, 16)); break;
+                        case Symbol.DIV: text_show_caclute.Text = DIV(Convert.ToInt32(st.Peek().ToString(), 16), Convert.ToInt32(text_show_caclute.Text, 16)); break;
+                        case Symbol.MOD: text_show_caclute.Text = MOD(Convert.ToInt32(st.Peek().ToString(), 16), Convert.ToInt32(text_show_caclute.Text, 16)); break;
                     }
-
+ 
                 }
+                else if (hex == Hex.Octal)//8进制
+                {
+                    switch (symbol)
+                    {
+                        //输入参数16进制
+                        case Symbol.ADD: text_show_caclute.Text = ADD(Convert.ToInt32(st.Peek().ToString(), 8), Convert.ToInt32(text_show_caclute.Text, 8)); break;
+                        case Symbol.SUB: text_show_caclute.Text = SUB(Convert.ToInt32(st.Peek().ToString(), 8), Convert.ToInt32(text_show_caclute.Text, 8)); break;
+                        case Symbol.MUL: text_show_caclute.Text = MUL(Convert.ToInt32(st.Peek().ToString(), 8), Convert.ToInt32(text_show_caclute.Text, 8)); break;
+                        case Symbol.DIV: text_show_caclute.Text = DIV(Convert.ToInt32(st.Peek().ToString(), 8), Convert.ToInt32(text_show_caclute.Text, 8)); break;
+                        case Symbol.MOD: text_show_caclute.Text = MOD(Convert.ToInt32(st.Peek().ToString(), 8), Convert.ToInt32(text_show_caclute.Text, 8)); break;
+                    }
+ 
+                }
+                else if (hex == Hex.Binary)//二进制
+                {
+                    switch (symbol)
+                    {
+                        //输入参数16进制
+                        case Symbol.ADD: text_show_caclute.Text = ADD(Convert.ToInt32(st.Peek().ToString(), 2), Convert.ToInt32(text_show_caclute.Text, 2)); break;
+                        case Symbol.SUB: text_show_caclute.Text = SUB(Convert.ToInt32(st.Peek().ToString(), 2), Convert.ToInt32(text_show_caclute.Text, 2)); break;
+                        case Symbol.MUL: text_show_caclute.Text = MUL(Convert.ToInt32(st.Peek().ToString(), 2), Convert.ToInt32(text_show_caclute.Text, 2)); break;
+                        case Symbol.DIV: text_show_caclute.Text = DIV(Convert.ToInt32(st.Peek().ToString(), 2), Convert.ToInt32(text_show_caclute.Text, 2)); break;
+                        case Symbol.MOD: text_show_caclute.Text = MOD(Convert.ToInt32(st.Peek().ToString(), 2), Convert.ToInt32(text_show_caclute.Text, 2)); break;
+                    }
+ 
+                }
+
             }
             catch (Exception ex)
             {
@@ -382,6 +605,67 @@ namespace Home_Four
             }
             
         }
+
+        private void btn_sin_Click(object sender, EventArgs e)
+        {
+            double x;
+            if (double.TryParse(text_show_caclute.Text, out x) == true)
+            {
+                //st.Push(x);
+                text_show_caclute.Text = SIN(x);
+
+            }
+        }
+
+        private void btn_cos_Click(object sender, EventArgs e)
+        {
+            double x;
+            if (double.TryParse(text_show_caclute.Text, out x) == true)
+            {
+               // st.Push(x);
+                text_show_caclute.Text = COS(x);
+
+            }
+        }
+
+        private void btn_tan_Click(object sender, EventArgs e)
+        {
+            double x;
+            if (double.TryParse(text_show_caclute.Text, out x) == true)
+            {
+               // st.Push(x);
+                text_show_caclute.Text = TAN(x);
+
+            }
+        }
+
+        private void btn_ctan_Click(object sender, EventArgs e)
+        {
+            double x;
+            if (double.TryParse(text_show_caclute.Text, out x) == true)
+            {
+               // st.Push(x);
+                text_show_caclute.Text = CTAN(x);
+
+            }
+        }
+
+        private void btn_pi_Click(object sender, EventArgs e)
+        {
+            text_show_caclute.Text += Math.PI;
+        }
+
+        private void btn_e_Click(object sender, EventArgs e)
+        {
+            text_show_caclute.Text += Math.E;
+        }
+
+        private void Caculate_Load(object sender, EventArgs e)
+        {
+
+        }
+
+
 
 
     }
