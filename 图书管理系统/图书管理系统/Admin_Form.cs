@@ -13,13 +13,15 @@ namespace 图书管理系统
     {
         DataSet User;
         SqlDataAdapter dataadapter;
+        public int Userid;
         private string LoginName = "";
-        public Admin_Form(string Loginname)
+        public Admin_Form(string Loginname,int userid)
         {
 
             InitializeComponent();
             //保存登陆的用户名
             this.LoginName = Loginname;
+            this.Userid = userid;
             this.Text = "欢迎您管理员  " + Loginname;
         }
 
@@ -115,11 +117,10 @@ namespace 图书管理系统
                     {
                         this.dataGridView1.Rows.RemoveAt(t.Index);
                         dataadapter.Update(User.Tables[0]);
-                        BindDateGrdView();
-                        BindDateGrdView();
+                        
                     }
                     }
-                
+                BindDateGrdView();
                 
             }
             catch (ArgumentOutOfRangeException ex)
@@ -141,6 +142,7 @@ namespace 图书管理系统
                 BindDateGrdView();
             }
         }
+
 
 
 

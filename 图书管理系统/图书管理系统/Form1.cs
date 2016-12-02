@@ -37,6 +37,8 @@ namespace 图书管理系统
 
         private void submit_button_Click(object sender, EventArgs e)
         {
+            try{
+
             //如果用户名和密码都有值,并且使用管理员登陆
             if (username_textBox.Text != "" && password_textBox.Text != ""&&Admin_radioButton.Checked)
             {
@@ -76,6 +78,13 @@ namespace 图书管理系统
                 MessageBox.Show("请检查输入是否正确");
  
             }
+              
+        }
+            catch (Exception ex)
+            {
+                MessageBox.Show("出现未知错误");
+            }
+        
         }
         public string getLoginname()
         {

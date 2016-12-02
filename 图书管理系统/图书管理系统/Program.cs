@@ -21,12 +21,12 @@ namespace 图书管理系统
             if (f1.logintype == 0)
             {
 
-               // Application.Run(new Admin_Form(f1.getLoginname()));
-                Application.Run(new Book_Category());
+                Application.Run(new Admin_Form(f1.getLoginname(), Login.userid));
+               // Application.Run(new Book_Category());
             }
             else if (f1.logintype == 1)
             {
-                Application.Run(new User_Form(f1.getLoginname()));
+                Application.Run(new User_Form(f1.getLoginname(),Login.userid));
 
             }
             else
