@@ -28,7 +28,7 @@ namespace 图书管理系统
         }
         private void BindDateGrdView()
         {
-            string sql = "select ID,Book_name,Book_ISBN,Book_Price,Book_Price,Book_Publish,Book_Publist_Time,Book_Status from [Book]";
+            string sql = "select ID,Book_name,Book_ISBN,Book_Price,Book_Publish,Book_Publist_Time,Book_Status from [Book]";
             SqlConnection conn = new SqlConnection(Connectionsql.getconstring());
             conn.Open();
             dataadapter = new SqlDataAdapter(sql, conn);
@@ -39,6 +39,8 @@ namespace 图书管理系统
             Book = new DataSet();
             dataadapter.Fill(Book, "Book");
             this.dataGridView1.DataSource = Book.Tables[0];
+            DataGridViewRow t = this.dataGridView1.Rows[0];
+            //this.dataGridView1.ColumnHeadersDefaultCellStyle = dataGridView1.ColumnHeadersDefaultCellStyle;
             this.dataGridView1.Columns[0].ReadOnly = true;
             this.dataGridView1.Columns[1].HeaderText = "书名";
             this.dataGridView1.Columns[2].HeaderText = "ISBN号";
@@ -46,9 +48,46 @@ namespace 图书管理系统
             this.dataGridView1.Columns[4].HeaderText = "出版社";
             this.dataGridView1.Columns[5].HeaderText = "出版日期";
             this.dataGridView1.Columns[6].HeaderText = "是否已借";
-            this.dataGridView1.Columns[7].HeaderText = "借书用户";
 
             conn.Close();
+        }
+
+        private void borrowbook_button_Click(object sender, EventArgs e)
+        {
+            try
+            {
+
+                foreach (DataGridViewRow t in this.dataGridView1.SelectedRows)
+                {
+
+                    if (t.Index != -1)
+                    {
+                        if ((bool)t.Cells[6].Value == false)
+                        {
+                            int id = (int)t.Cells[0].Value;
+                            string updatesql = "update [Book] set Book_Status='true' where ID=@ID";
+                            SqlConnection conn = new SqlConnection(Connectionsql.getconstring());
+                            conn.Open();
+                            SqlCommand sqlcmd = new SqlCommand(updatesql, conn);
+                            sqlcmd.Parameters.AddWithValue("@ID", id);
+                            sqlcmd.ExecuteNonQuery();
+                            dataadapter.Update(Book.Tables[0]);
+                            
+                        }
+                        else
+                        {
+                            MessageBox.Show("存在别人已经借阅的图书，请重新选择");
+                        }
+                    }
+                }
+                BindDateGrdView();
+
+
+            }
+            catch (ArgumentOutOfRangeException ex)
+            {
+                MessageBox.Show("请选择要借的书");
+            }
         }
 
     }
