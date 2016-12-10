@@ -24,13 +24,15 @@ namespace 图书管理系统
             {
                 button1.Visible = false;
                 button2.Visible = false;
+                button4.Visible = false;
                 button3.Left = 10;
+                
             }
         }
 
         private void Logined_Load(object sender, EventArgs e)
         {
-           
+            this.Text = "欢迎您 " + LoginName;
         }
 
         private void button1_Click(object sender, EventArgs e)
@@ -49,6 +51,13 @@ namespace 图书管理系统
         {
             User_Form us = new User_Form(LoginName);
             us.Show();
+
+        }
+
+        private void button4_Click(object sender, EventArgs e)
+        {
+            Admin_Book_re admin = new Admin_Book_re(LoginName,1);
+            admin.Show();
 
         }
     }

@@ -21,3 +21,4 @@ E:\大学\大三上\C#实验\图书管理系统\图书管理系统\obj\x86\Debug
 E:\大学\大三上\C#实验\图书管理系统\图书管理系统\obj\x86\Debug\图书管理系统.Properties.Resources.resources
 E:\大学\大三上\C#实验\图书管理系统\图书管理系统\obj\x86\Debug\图书管理系统.csproj.GenerateResource.Cache
 E:\大学\大三上\C#实验\图书管理系统\图书管理系统\obj\x86\Debug\图书管理系统.Logined.resources
+E:\大学\大三上\C#实验\图书管理系统\图书管理系统\obj\x86\Debug\图书管理系统.Admin_Book_re.resources

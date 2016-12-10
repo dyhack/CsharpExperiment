@@ -150,6 +150,7 @@
             this.Controls.Add(this.Username_label);
             this.Controls.Add(this.panel1);
             this.Controls.Add(this.LoginLabel);
+            this.MaximizeBox = false;
             this.Name = "Form1";
             this.Text = "登陆窗口";
             this.Load += new System.EventHandler(this.Form1_Load);

@@ -40,8 +40,10 @@ namespace 图书管理系统
             //如果用户名和密码都有值,并且使用管理员登陆
             if (username_textBox.Text != "" && password_textBox.Text != ""&&Admin_radioButton.Checked)
             {
+                LoginedInfo.Loginname = username_textBox.Text;
                 if (Login.Login_charge(username_textBox.Text, password_textBox.Text, 0))
                 {
+                    LoginedInfo.Logintype = 0;
                     MessageBox.Show("登陆成功");
                     this.logintype = 0;
                     this.Close();    //关闭登录窗口
@@ -56,10 +58,11 @@ namespace 图书管理系统
             //判断读者登陆
             else if (username_textBox.Text != "" && password_textBox.Text != "" && User_radioButton.Checked)
             {
+                LoginedInfo.Loginname = username_textBox.Text;
                 if(Login.Login_charge(username_textBox.Text,password_textBox.Text,1))
                 {
                     MessageBox.Show("登陆成功");
-                    
+                    LoginedInfo.Logintype = 1;
                    // User_Form uf = new User_Form(username_textBox.Text);
                    //uf.ShowDialog();
                     this.logintype = 1;

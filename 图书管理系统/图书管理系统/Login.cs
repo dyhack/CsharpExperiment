@@ -32,6 +32,11 @@ namespace 图书管理系统
                 //如过查询结果没有,返回空Convert.ToInt32不会导致异常
                 if (Convert.ToInt32(sqlcmd.ExecuteScalar()) > 0)
                 {
+                    string  sql3 = "select ID from [User] where Username=@username";
+                    sqlcmd.CommandText = sql3;
+                    sqlcmd.Parameters.AddWithValue("@username",LoginedInfo.Loginname);
+                    LoginedInfo.Userid= Convert.ToInt32(sqlcmd.ExecuteScalar());
+                    //LoginedInfo.Userid = Convert.ToInt32(sqlcmd.ExecuteScalar());
                     sqlcmd.CommandText = sql1;
                     sqlcmd.Parameters.AddWithValue("@time", DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss"));
                     sqlcmd.ExecuteNonQuery();
