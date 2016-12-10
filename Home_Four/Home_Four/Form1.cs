@@ -18,13 +18,17 @@ namespace Home_Four
         bool previsnumber = false;
         bool nextisnumber = false;
         enum Hex { Hexadecimal, Decimal, Octal, Binary };//16,10,8,2进制
-        enum Symbol{ADD,SUB,MUL,DIV,MOD,sin,cos,tan,ctan};//加，减，乘，除
+        enum Symbol{ADD,SUB,MUL,DIV,MOD,sin,cos,tan,ctan,xy};//加，减，乘，除
         Symbol symbol;//运算符标识符
         Hex hex=Hex.Decimal;//进制标识符
         public Caculate()
         {
             InitializeComponent();
             this.text_show_caclute.Enabled = false;
+            radioButton2.Checked = true;
+            HideLeftButton(true);
+            hex = Hex.Decimal;
+
         }
         /// <summary>
         /// 设置A-F按键的Enable属性
@@ -40,6 +44,10 @@ namespace Home_Four
             btn_16_D.Enabled = flag;
             btn_16_E.Enabled = flag;
             btn_16_F.Enabled = flag;
+
+        }
+        private void Caculate_Load(object sender, EventArgs e)
+        {
 
         }
         /// <summary>
@@ -98,6 +106,23 @@ namespace Home_Four
                 btn_1.Enabled = true;
 
             }
+        }
+        private void HideLeftButton(bool flag)
+        {
+            btn_sin.Enabled = flag;
+            btn_cos.Enabled = flag;
+            btn_tan.Enabled = flag;
+            btn_ctan.Enabled = flag;
+            btn_xy.Enabled = flag;
+            btn_x4.Enabled = flag;
+            btn_x3.Enabled = flag;
+            btn_x2.Enabled = flag;
+            btn_nnnnn.Enabled = flag;
+            btn_1divx.Enabled = flag;
+            btn_ln.Enabled = flag;
+            btn_log.Enabled = flag;
+            btn_e.Enabled = flag;
+            btn_pi.Enabled = flag;
         }
         /// <summary>
         /// 加法
@@ -262,14 +287,16 @@ namespace Home_Four
             Show_btn();
             //16进制
             hex = Hex.Hexadecimal;
+            HideLeftButton(false);
         }
-
 
         private void radioButton2_CheckedChanged(object sender, EventArgs e)
         {
             Show_btn();
+            HideLeftButton(true);
             //10进制
             hex = Hex.Decimal;
+
         }
 
  
@@ -277,6 +304,7 @@ namespace Home_Four
         private void radioButton4_CheckedChanged(object sender, EventArgs e)
         {
             Show_btn();
+            HideLeftButton(false);
             //二进制
             hex = Hex.Binary;
         }
@@ -284,6 +312,7 @@ namespace Home_Four
         private void radioButton3_CheckedChanged(object sender, EventArgs e)
         {
             Show_btn();
+            HideLeftButton(false);
             //8进制
             hex = Hex.Octal;
         }
@@ -544,6 +573,7 @@ namespace Home_Four
                             case Symbol.MUL: text_show_caclute.Text = MUL((double)st.Peek(), Convert.ToDouble(text_show_caclute.Text)); break;
                             case Symbol.DIV: text_show_caclute.Text = DIV((double)st.Peek(), Convert.ToDouble(text_show_caclute.Text)); break;
                             case Symbol.MOD: text_show_caclute.Text = MOD((double)st.Peek(), Convert.ToDouble(text_show_caclute.Text)); break;
+                            case Symbol.xy:  text_show_caclute.Text = Math.Pow((double)st.Pop(), Convert.ToDouble(text_show_caclute.Text)).ToString(); break;
                         }
 
                     }
@@ -552,7 +582,7 @@ namespace Home_Four
                 {
                     switch (symbol)
                     {
-                            //输入参数16进制
+                            //输入参数同意转换为10进制，通过10进制计算后显示相关的其他进制
                         case Symbol.ADD: text_show_caclute.Text = ADD(Convert.ToInt32(st.Peek().ToString(),16),Convert.ToInt32(text_show_caclute.Text,16)); break;
                         case Symbol.SUB: text_show_caclute.Text = SUB(Convert.ToInt32(st.Peek().ToString(), 16), Convert.ToInt32(text_show_caclute.Text, 16)); break;
                         case Symbol.MUL: text_show_caclute.Text = MUL(Convert.ToInt32(st.Peek().ToString(), 16), Convert.ToInt32(text_show_caclute.Text, 16)); break;
@@ -657,16 +687,158 @@ namespace Home_Four
 
         private void btn_e_Click(object sender, EventArgs e)
         {
+            previsnumber = true;
             text_show_caclute.Text += Math.E;
         }
 
-        private void Caculate_Load(object sender, EventArgs e)
-        {
 
+       
+
+        private void btn_x2_Click(object sender, EventArgs e)
+        {
+            double x;
+            if (double.TryParse(text_show_caclute.Text, out x) == true)
+            {
+
+                text_show_caclute.Text = Math.Pow(x, 2).ToString();
+
+            }
         }
 
+        private void btn_x3_Click(object sender, EventArgs e)
+        {
+            double x;
+            if (double.TryParse(text_show_caclute.Text, out x) == true)
+            {
 
+                text_show_caclute.Text = Math.Pow(x, 3).ToString();
 
+            }
+        }
 
+        private void btn_x4_Click(object sender, EventArgs e)
+        {
+            double x;
+            if (double.TryParse(text_show_caclute.Text, out x) == true)
+            {
+
+                text_show_caclute.Text = Math.Pow(x, 4).ToString();
+
+            }
+        }
+
+        private void btn_xy_Click(object sender, EventArgs e)
+        {
+            double x;
+            if (double.TryParse(text_show_caclute.Text, out x) == true)
+            {
+                previsnumber = true;
+                st.Push(x);
+                text_show_caclute.Text = "";
+
+            }
+            symbol = Symbol.xy;
+        }
+
+        private void btn_1divx_Click(object sender, EventArgs e)
+        {
+            double x;
+            if (double.TryParse(text_show_caclute.Text, out x) == true)
+            {
+
+                text_show_caclute.Text = (1 / x).ToString();
+
+            }
+        }
+        
+
+        private void btn_ln_Click(object sender, EventArgs e)
+        {
+            double x;
+            if (double.TryParse(text_show_caclute.Text, out x) == true)
+            {
+
+                text_show_caclute.Text = Math.Log(x, Math.E).ToString();
+
+            }
+           
+        }
+        private double returnjiecheng(double x)
+        {
+            double result = 1;
+            for (double j = 1; j <= x; j++)
+            {
+                result *= j;
+            }
+            return result;
+
+        }
+        private void btn_nnnnn_Click(object sender, EventArgs e)
+        {
+            double x;
+            if (double.TryParse(text_show_caclute.Text, out x) == true)
+            {
+
+                if (x > 0)
+                {
+                    text_show_caclute.Text = returnjiecheng(x).ToString();
+                }
+                else if (x == 0)//0的阶乘是1
+                {
+                    text_show_caclute.Text = (1).ToString();
+                }
+            }
+        }
+
+        private void btn_log_Click(object sender, EventArgs e)
+        {
+            double x;
+            if (double.TryParse(text_show_caclute.Text, out x) == true)
+            {
+
+                text_show_caclute.Text = Math.Log10(x).ToString();
+
+            }
+        }
+
+        private void btn_e_Click_1(object sender, EventArgs e)
+        {
+            text_show_caclute.Text = Math.E.ToString();
+        }
+
+        private void btn_pi_Click_1(object sender, EventArgs e)
+        {
+            text_show_caclute.Text = Math.PI.ToString();
+        }
+
+        private void btn_16_A_Click(object sender, EventArgs e)
+        {
+            text_show_caclute.Text += "a";
+        }
+
+        private void btn_16_B_Click(object sender, EventArgs e)
+        {
+            text_show_caclute.Text += "b";
+        }
+
+        private void btn_16_C_Click(object sender, EventArgs e)
+        {
+            text_show_caclute.Text += "c";
+        }
+
+        private void btn_16_D_Click(object sender, EventArgs e)
+        {
+            text_show_caclute.Text += "d";
+        }
+
+        private void btn_16_E_Click(object sender, EventArgs e)
+        {
+            text_show_caclute.Text += "e";
+        }
+
+        private void btn_16_F_Click(object sender, EventArgs e)
+        {
+            text_show_caclute.Text += "f";
+        }
     }
 }

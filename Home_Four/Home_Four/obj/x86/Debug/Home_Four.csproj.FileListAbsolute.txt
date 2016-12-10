@@ -19,3 +19,4 @@ E:\大学\大三上\C#实验\Home_Four\Home_Four\obj\x86\Debug\Home_Four.Propert
 E:\大学\大三上\C#实验\Home_Four\Home_Four\obj\x86\Debug\Home_Four.csproj.GenerateResource.Cache
 E:\大学\大三上\C#实验\Home_Four\Home_Four\obj\x86\Debug\Home_Four.exe
 E:\大学\大三上\C#实验\Home_Four\Home_Four\obj\x86\Debug\Home_Four.pdb
+E:\大学\大三上\C#实验\Home_Four\Home_Four\obj\x86\Debug\Home_Four.csprojResolveAssemblyReference.cache
